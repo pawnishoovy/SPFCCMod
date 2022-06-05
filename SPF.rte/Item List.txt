@@ -1,0 +1,31 @@
+///////
+//Actors
+
+Federal Privateer
+Armoured Federal Privateer
+Ohklar
+
+///////
+//Weapons
+
+QzBf G-9
+Harrier PPt
+S&W 400 M
+BnM-4
+BnM-4 JSu 3x
+StG 66-F
+MPt-8 Duster
+TMP
+AGK35
+AN-Mag
+AN-Mag AG5
+AutoMag D-9
+B-3
+ARk Riot
+StPl 251
+
+///////
+//Bombs
+
+T9 Frag
+INCIN-2 Popcorn

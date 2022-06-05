@@ -1,0 +1,57 @@
+They've come for your booty! Stop them!
+
+A widespread group of pirates that loosely group together in a "Federation".
+Ragtag and using a wide variety of low tech weapons they are only a force 
+to be reckoned with in large numbers. They sometimes cooperate with the
+Ronin on joint ventures.
+
+In the mod:
+
+Actors:
+  - Federal Privateer: A light soldier.
+  - Armoured Federal Privateer: A medium soldier.
+  - Federal Privateer Pyro: A medium soldier with a flamethrower.
+  - Ohklar: A heavy soldier.
+
+Craft:
+  - CarryCorps He-88 Taurus LCC: A medium cargo shuttle, WIP.
+  - UA Systems Spare Parts Junker: A medium delivery class rocket.
+  - UA 0382 Mini Cargo-Hold: A drop pod.
+
+Weapons:
+  - QzBf G-9: A light pistol.
+  - Harrier PPt: A medium handgun.
+  - S&W 400 M: A heavy revolver.
+  - MKII Harksburg Flarepistol: An incendiary flaregun.
+  - BnM-4: A basic rifle.
+  - StG 66-F: A semiautomatic carbine.
+  - BnM-4 JSu 3x: A medium sniper rifle.
+  - MPt-8 Duster: A light SMG.
+  - TMP: A highly accurate and fast firing SMG.
+  - AGK35: An inaccurate but powerful assault rifle.
+  - AGK37 Mod 4: A medium assault rifle with an underslung grenade launcher.
+  - AN-Mag: A highly accurate and long range assault rifle.
+  - AN-Mag AG5: A medium assault rifle with an underslung grenade launcher.
+  - AutoMag D-9: A light machinegun.
+  - B-3: A heavy machinegun.
+  - ARk Riot: A pump action shotgun.
+  - Flammenwerfer K-12: A flamethrower with limited fuel.
+
+Tools:
+  - DP-T Plasma Cutter: A medium digger.
+
+Shields:
+  - DP 9 Blast-Shield: A heavy riot shield.
+
+Bombs:
+  - T9 Frag: A basic handgrenade.
+  - INCIN-2 Popcorn: An incendiary grenade.
+
+
+Includes preset actors that can be enabled by reading the Readme.txt included in SPF.rte.
+Includes a Voidwalkers and UnMappedLands faction file.
+
+For bug reporting, suggestions, comments and critique, head here:
+http://forums.datarealms.com/viewtopic.php?f=61&t=45173
+
+Credit to 4zk for sound editing.
