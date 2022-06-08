@@ -45,13 +45,6 @@ function Update(self)
 			end
 		end
 	end
-	if self.GibTimer:IsPastSimTimeLimit() then
-		self:GibThis();
-	elseif (self.Vel.Largest + math.abs(self.AngularVel)) > 5 or self.AIMode == Actor.AIMODE_STAY then
-		self.GibTimer:Reset();
-	elseif self.HatchState == ACraft.CLOSED then
-		self:OpenHatch();
-	end	
 	
 end
 

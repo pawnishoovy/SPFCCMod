@@ -8,7 +8,7 @@ print ("Loading "..factionid)
 CF_Factions[#CF_Factions + 1] = factionid
 
 CF_FactionNames[factionid] = "Space Pirates";
-CF_FactionDescriptions[factionid] = "Aarr! The Space Pirate Federation is here to lay claim to yer booty!";
+CF_FactionDescriptions[factionid] = "Arr! The Space Pirate Federation is here to lay claim to yer booty!";
 CF_FactionPlayable[factionid] = true;
 
 CF_RequiredModules[factionid] = {"SPF.rte"}
@@ -295,16 +295,6 @@ CF_ItmTypes[factionid][i] = CF_WeaponTypes.RIFLE;
 CF_ItmPowers[factionid][i] = 5
 
 i = #CF_ItmNames[factionid] + 1
-CF_ItmNames[factionid][i] = "AN-Mag AG5"
-CF_ItmPresets[factionid][i] = "AN-Mag AG5"
-CF_ItmModules[factionid][i] = "SPF.rte"
-CF_ItmPrices[factionid][i] = 100
-CF_ItmDescriptions[factionid][i] = "This modification of the AN-Mag comes with an underslung AG5 grenade launcher."
-CF_ItmUnlockData[factionid][i] = 1600
-CF_ItmTypes[factionid][i] = CF_WeaponTypes.RIFLE;
-CF_ItmPowers[factionid][i] = 0
-
-i = #CF_ItmNames[factionid] + 1
 CF_ItmNames[factionid][i] = "MD M27A2"
 CF_ItmPresets[factionid][i] = "MD M27A2"
 CF_ItmModules[factionid][i] = "SPF.rte"
@@ -364,12 +354,12 @@ CF_ItmUnlockData[factionid][i] = 500
 CF_ItmTypes[factionid][i] = CF_WeaponTypes.PISTOL;
 CF_ItmPowers[factionid][i] = 0
 
-i = #CF_ItmNames[factionid] + 1
-CF_ItmNames[factionid][i] = "Flammenwerfer K-12 P"
-CF_ItmPresets[factionid][i] = "Flammenwerfer K-12 P"
-CF_ItmModules[factionid][i] = "SPF.rte"
-CF_ItmPrices[factionid][i] = 100
-CF_ItmDescriptions[factionid][i] = "A flamethrower that has a small drum of fuel attatched to the fore grip, for those not suicidal enough to walk around with a backpack full of fuel. Extremely good against flesh, but absolutely terrible against steel."
-CF_ItmUnlockData[factionid][i] = 1000
-CF_ItmTypes[factionid][i] = CF_WeaponTypes.HEAVY;
-CF_ItmPowers[factionid][i] = 0
+-- i = #CF_ItmNames[factionid] + 1
+-- CF_ItmNames[factionid][i] = "Flammenwerfer K-12 P"
+-- CF_ItmPresets[factionid][i] = "Flammenwerfer K-12 P"
+-- CF_ItmModules[factionid][i] = "SPF.rte"
+-- CF_ItmPrices[factionid][i] = 100
+-- CF_ItmDescriptions[factionid][i] = "A flamethrower that has a small drum of fuel attatched to the fore grip, for those not suicidal enough to walk around with a backpack full of fuel. Extremely good against flesh, but absolutely terrible against steel."
+-- CF_ItmUnlockData[factionid][i] = 1000
+-- CF_ItmTypes[factionid][i] = CF_WeaponTypes.HEAVY;
+-- CF_ItmPowers[factionid][i] = 0
