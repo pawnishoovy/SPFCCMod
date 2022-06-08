@@ -5,6 +5,7 @@ function Create(self)
 	
 	self.spotVoiceSound = CreateSoundContainer("SPF Droid VO Spot", "SPF.rte");
 	self.idleVoiceSound = CreateSoundContainer("SPF Droid VO Idle", "SPF.rte");
+	self.rumVoiceSound = CreateSoundContainer("SPF Droid VO Rum", "SPF.rte");
 	
 	self.voiceSound = self.idleVoiceSound;
 
@@ -91,6 +92,14 @@ function Update(self)
 	end
 
 	self.controller = self:GetController();
+	
+	if self:NumberValueExists("Robo Drink Rum") then
+		self:RemoveNumberValue("Robo Drink Rum");
+		if not self.voiceSound:IsBeingPlayed() then
+			self.voiceSound = self.rumVoiceSound;
+			self.voiceSound:Play(self.Pos);
+		end
+	end
 
 	-- Leg Collision Detection system
     --local i = 0
