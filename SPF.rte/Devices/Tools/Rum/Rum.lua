@@ -3,7 +3,7 @@ function Create(self)
 	self.spillLoop = CreateSoundContainer("SPF Rum Spill Loop", "SPF.rte");
 	self.drinkSound = CreateSoundContainer("SPF Rum Drink", "SPF.rte");
 
-	self.originalStanceOffset = Vector(self.StanceOffset.X, self.StanceOffset.Y);
+	self.originalStanceOffset = Vector(6, 8);
 	
 	self.rotation = 0;
 	self.stance = Vector(0, 0);
@@ -11,6 +11,7 @@ function Create(self)
 	self.flipTimer = Timer();
 	
 	self.drinkTimer = Timer();
+	self.keepDrinkTimer = Timer();
 
 end
 function Update(self)
@@ -39,7 +40,9 @@ function Update(self)
 			
 			local dist = SceneMan:ShortestDistance(self.Pos, self.parent.Head.Pos + Vector(0, 4), SceneMan.SceneWrapsX)
 			
-			if self:IsActivated() then
+			if self:IsActivated() or (self.firstActivate and not self.keepDrinkTimer:IsPastSimMS(500)) then
+			
+				self.firstActivate = true;
 			
 				local factor = math.max(0, (self.parent:GetAimAngle(false) / math.pi/2) * 5);
 				
@@ -81,7 +84,11 @@ function Update(self)
 			self.StanceOffset = self.originalStanceOffset + self.stance
 			self.InheritedRotAngleOffset = self.rotation
 			
-			if self:IsActivated() then
+			if controller:IsState(Controller.PRIMARY_ACTION) then
+				self.keepDrinkTimer:Reset();
+			end
+			
+			if self:IsActivated() or not self.keepDrinkTimer:IsPastSimMS(500) then
 				if dist.X * self.FlipFactor > -3 and not self.tooClose then
 					self.tooClose = true;
 					print(dist.X)

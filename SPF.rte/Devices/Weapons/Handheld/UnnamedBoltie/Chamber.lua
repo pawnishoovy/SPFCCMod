@@ -92,7 +92,6 @@ function Create(self)
 end
 
 function Update(self)
-	self.Frame = 0;
 	self.rotationTarget = 0 -- ZERO IT FIRST AAAA!!!!!
 	
 	if self.ID == self.RootID then
@@ -146,6 +145,7 @@ function Update(self)
 	local controller = self.parent and self.parent:GetController() or nil
 	-- PAWNIS RELOAD ANIMATION HERE
 	if self.parent and (self:IsReloading() or self.Chamber == true) then
+		print(self.Frame)
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
@@ -168,7 +168,7 @@ function Update(self)
 			
 		elseif self.reloadPhase == 1 then
 		
-		--	self.FrameLocal = self.FrameIntermediate
+			self.Frame = 2
 
 			self.reloadDelay = self.reloadPrepareDelay.BoltBack;
 			self.afterDelay = self.reloadAfterDelay.BoltBack;		
@@ -184,7 +184,7 @@ function Update(self)
 			
 		elseif self.reloadPhase == 2 then
 		
-			--self.FrameLocal = self.FrameRange
+			self.Frame = 5
 		
 			self.reloadDelay = self.reloadPrepareDelay.RoundIn;
 			self.afterDelay = self.reloadAfterDelay.RoundIn;		
@@ -197,7 +197,7 @@ function Update(self)
 			
 		elseif self.reloadPhase == 3 then
 		
-			--self.FrameLocal = self.FrameRange
+			self.Frame = 5
 
 			self.reloadDelay = self.reloadPrepareDelay.BoltForward;
 			if self:IsReloading() then
@@ -213,7 +213,7 @@ function Update(self)
 			
 		elseif self.reloadPhase == 4 then
 		
-		--	self.FrameLocal = self.FrameIntermediate
+			self.Frame = 2
 
 			self.reloadDelay = self.reloadPrepareDelay.BoltDown;
 			self.afterDelay = self.reloadAfterDelay.BoltDown;		
@@ -237,29 +237,29 @@ function Update(self)
 		
 			if self.reloadPhase == 0 then
 			
-				-- local minTime = self.reloadDelay
-				-- local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				-- local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
-				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
-				-- self.FrameLocal = math.floor(factor * (self.FrameIntermediate) + 0.5)
+				self.Frame = math.floor(factor * (2) + 0.5)
 				
-				-- self.rotationTarget = -5 + -15 * factor	
+				self.rotationTarget = -5 + -2 * factor	
 				
 			elseif self.reloadPhase == 1 then
 			
-				-- local minTime = self.reloadDelay
-				-- local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				-- local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
-				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
-				-- self.FrameLocal = self.FrameIntermediate + math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				self.Frame = 2 + math.floor(factor * (5 - 2) + 0.5)
 				
-				-- self.rotationTarget = -5 + -15 * factor
+				self.rotationTarget = -5 + -2 * factor
 				
 			elseif self.reloadPhase == 2 then
 			
@@ -270,29 +270,29 @@ function Update(self)
 				
 			elseif self.reloadPhase == 3 then
 			
-				-- local minTime = self.reloadDelay
-				-- local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				-- local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
-				-- self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
+				self.Frame = 2 + math.floor((1 - factor) * (5) + 0.5)
 				
-				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
+			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				-- self.rotationTarget = -15 - -10 * factor
+				self.rotationTarget = -15 - -2 * factor
 			
 			elseif self.reloadPhase == 4 then
 			
-				-- local minTime = self.reloadDelay
-				-- local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				-- local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
-				-- self.FrameLocal = self.FrameIntermediate - math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				self.Frame = math.floor((1 - factor) * (2) + 0.5)
 				
-				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
+			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				-- self.rotationTarget = -15 - -10 * factor
+				self.rotationTarget = -15 - -2 * factor
 				
 			end
 			
@@ -405,9 +405,9 @@ function Update(self)
 		self.rotationTarget = 0
 		
 		-- if self.boltBack == true then
-			-- self.FrameLocal = self.FrameRange;
+			-- self.Frame = self.FrameRange;
 		-- else
-			-- self.FrameLocal = 0;
+			-- self.Frame = 0;
 		-- end
 		
 		self.reloadTimer:Reset();
