@@ -1,3 +1,7 @@
+In mid-late 2022, revamped and enhanced by pawnishoovy.
+
+Original text by Major below (mildly modified for acuracy)
+
 They've come for your booty! Stop them!
 
 A widespread group of pirates that loosely group together in a "Federation".
@@ -10,11 +14,10 @@ In the mod:
 Actors:
   - Federal Privateer: A light soldier.
   - Armoured Federal Privateer: A medium soldier.
-  - Federal Privateer Pyro: A medium soldier with a flamethrower.
   - Ohklar: A heavy soldier.
 
 Craft:
-  - CarryCorps He-88 Taurus LCC: A medium cargo shuttle, WIP.
+  - CarryCorps He-88 Taurus LCC: A medium cargo shuttle.
   - UA Systems Spare Parts Junker: A medium delivery class rocket.
   - UA 0382 Mini Cargo-Hold: A drop pod.
 
@@ -25,7 +28,7 @@ Weapons:
   - MKII Harksburg Flarepistol: An incendiary flaregun.
   - BnM-4: A basic rifle.
   - StG 66-F: A semiautomatic carbine.
-  - BnM-4 JSu 3x: A medium sniper rifle.
+  - AXt-C48: A large sniper rifle.
   - MPt-8 Duster: A light SMG.
   - TMP: A highly accurate and fast firing SMG.
   - AGK35: An inaccurate but powerful assault rifle.
@@ -35,9 +38,10 @@ Weapons:
   - AutoMag D-9: A light machinegun.
   - B-3: A heavy machinegun.
   - ARk Riot: A pump action shotgun.
-  - Flammenwerfer K-12: A flamethrower with limited fuel.
+  - Flammenwerfer K-12 P: A flamethrower with limited fuel.
 
 Tools:
+  - Rum: Delicious.
   - DP-T Plasma Cutter: A medium digger.
 
 Shields:
@@ -52,6 +56,4 @@ Includes preset actors that can be enabled by reading the Readme.txt included in
 Includes a Voidwalkers and UnMappedLands faction file.
 
 For bug reporting, suggestions, comments and critique, head here:
-http://forums.datarealms.com/viewtopic.php?f=61&t=45173
-
-Credit to 4zk for sound editing.
+https://discord.gg/WEuB9EMJzA

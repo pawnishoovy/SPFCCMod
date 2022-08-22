@@ -12,7 +12,7 @@ QzBf G-9
 Harrier PPt
 S&W 400 M
 BnM-4
-BnM-4 JSu 3x
+AXt-C48
 StG 66-F
 MPt-8 Duster
 TMP
@@ -23,6 +23,13 @@ AutoMag D-9
 B-3
 ARk Riot
 StPl 251
+Flammenwerfer K-12 P
+
+///////
+//Tools
+
+DP-T Plasma Cutter
+Rum
 
 ///////
 //Bombs
