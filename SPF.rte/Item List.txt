@@ -8,6 +8,8 @@ Ohklar
 ///////
 //Weapons
 
+Cutlass
+
 QzBf G-9
 Harrier PPt
 S&W 400 M

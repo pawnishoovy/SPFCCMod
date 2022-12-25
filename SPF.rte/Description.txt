@@ -56,4 +56,4 @@ Includes preset actors that can be enabled by reading the Readme.txt included in
 Includes a Voidwalkers and UnMappedLands faction file.
 
 For bug reporting, suggestions, comments and critique, head here:
-https://discord.gg/WEuB9EMJzA
+https://www.cortexcommandcenter.net/home
