@@ -163,6 +163,16 @@ CF_ItmTypes[factionid][i] = CF_WeaponTypes.TOOL;
 CF_ItmPowers[factionid][i] = 0
 
 i = #CF_ItmNames[factionid] + 1
+CF_ItmNames[factionid][i] = "Cutlass"
+CF_ItmPresets[factionid][i] = "Cutlass"
+CF_ItmModules[factionid][i] = "SPF.rte"
+CF_ItmPrices[factionid][i] = 15
+CF_ItmDescriptions[factionid][i] = "They used these for a reason, but now guns are used instead for a reason too."
+CF_ItmUnlockData[factionid][i] = 0
+CF_ItmTypes[factionid][i] = CF_WeaponTypes.PISTOL;
+CF_ItmPowers[factionid][i] = 0
+
+i = #CF_ItmNames[factionid] + 1
 CF_ItmNames[factionid][i] = "QzBf G-9"
 CF_ItmPresets[factionid][i] = "QzBf G-9"
 CF_ItmModules[factionid][i] = "SPF.rte"
