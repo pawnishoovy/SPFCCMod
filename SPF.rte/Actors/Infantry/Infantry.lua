@@ -1,4 +1,14 @@
+dofile("Base.rte/Constants.lua")
+require("AI/NativeHumanAI")  --dofile("Base.rte/AI/NativeHumanAI.lua")
+
 function Create(self)
+
+	self.AI = NativeHumanAI:Create(self)
+	--You can turn features on and off here
+	self.armSway = false;--true;
+	self.automaticEquip = false;
+	self.alternativeGib = true;
+	self.visibleInventory = false;
 
 	self.stepSound = CreateSoundContainer("SPF Infantry Step", "SPF.rte");
 	
@@ -18,6 +28,8 @@ function Create(self)
 	self.wasInAir = false;
 	
 	self.moveSoundTimer = Timer();
+	
+	self.MeleeAISkill = 0.7
 	
 end
 
@@ -65,6 +77,19 @@ function OnStride(self)
 end
 
 function Update(self)
+	
+	-- if self.alternativeGib then
+		-- HumanFunctions.DoAlternativeGib(self);
+	-- end
+	-- if self.automaticEquip then
+		-- HumanFunctions.DoAutomaticEquip(self);
+	-- end
+	-- if self.armSway then
+		-- HumanFunctions.DoArmSway(self, (self.Health/self.MaxHealth));	--Argument: shove strength
+	-- end
+	-- if self.visibleInventory then
+		-- HumanFunctions.DoVisibleInventory(self, false);	--Argument: whether to show all items
+	-- end
 
 	self.controller = self:GetController();
 
@@ -143,5 +168,10 @@ function Update(self)
 			end
 		end
 	end
+
+end
+
+function UpdateAI(self)
+	self.AI:Update(self)
 
 end

@@ -57,7 +57,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -231,7 +231,7 @@ function Update(self)
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
 				if self.reloadPhase == 2 then
-					self.ReloadTime = 0;
+					self.BaseReloadTime = 0;
 					self.reloadPhase = 0;
 				else
 					self.reloadPhase = self.reloadPhase + 1;
@@ -250,7 +250,7 @@ function Update(self)
 		if self.reloadPhase == 3 then
 			self.reloadPhase = 2;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 	end
 	
 	

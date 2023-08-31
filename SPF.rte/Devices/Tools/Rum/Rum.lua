@@ -32,6 +32,8 @@ function Update(self)
 			local controller = self.parent:GetController();
 			controller:SetState(Controller.AIM_SHARP,false);
 			
+			local activated = self:IsActivated() or controller:IsState(Controller.PRIMARY_ACTION) or dualKeyPressed
+			
 			local stanceTarget = Vector(0, 0);
 			local rotationTarget = 0;
 		
@@ -40,7 +42,7 @@ function Update(self)
 			
 			local dist = SceneMan:ShortestDistance(self.Pos, self.parent.Head.Pos + Vector(0, 4), SceneMan.SceneWrapsX)
 			
-			if self:IsActivated() or (self.firstActivate and not self.keepDrinkTimer:IsPastSimMS(500)) then
+			if activated or (self.firstActivate and not self.keepDrinkTimer:IsPastSimMS(500)) then
 			
 				self.firstActivate = true;
 			
@@ -91,7 +93,7 @@ function Update(self)
 			if self:IsActivated() or not self.keepDrinkTimer:IsPastSimMS(500) then
 				if dist.X * self.FlipFactor > -3 and not self.tooClose then
 					self.tooClose = true;
-					print(dist.X)
+					--print(dist.X)
 				end
 			
 				if self.RotAngle * self.FlipFactor > 1.6 and self.Magazine and self.Magazine.RoundCount > 0 then

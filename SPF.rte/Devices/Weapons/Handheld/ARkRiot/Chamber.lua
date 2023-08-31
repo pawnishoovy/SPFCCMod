@@ -59,7 +59,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -280,7 +280,7 @@ function Update(self)
 						self.Chamber = false;
 						self.reChamber = false;
 						self.breakReload = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 						
 					else
@@ -295,7 +295,7 @@ function Update(self)
 						self.Chamber = false;
 						self.reChamber = false;
 						self.breakReload = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 					
 					elseif self:IsReloading() and self.ammoCount < 7 then
@@ -305,7 +305,7 @@ function Update(self)
 					else
 						self.Chamber = false;
 						self.reChamber = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 					end
 
@@ -327,7 +327,7 @@ function Update(self)
 			self.phaseOnStop = nil;
 		end
 		
-		self.ReloadTime = 30000;
+		self.BaseReloadTime = 30000;
 	end
 	
 	if self:DoneReloading() then

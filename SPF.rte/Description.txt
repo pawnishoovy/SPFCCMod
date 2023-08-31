@@ -22,6 +22,7 @@ Craft:
   - UA 0382 Mini Cargo-Hold: A drop pod.
 
 Weapons:
+  - Cutlass: A relic from a bygone age. Sharp.
   - QzBf G-9: A light pistol.
   - Harrier PPt: A medium handgun.
   - S&W 400 M: A heavy revolver.

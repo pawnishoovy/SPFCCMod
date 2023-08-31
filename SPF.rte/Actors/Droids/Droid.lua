@@ -1,4 +1,14 @@
+dofile("Base.rte/Constants.lua")
+require("AI/NativeHumanAI")  --dofile("Base.rte/AI/NativeHumanAI.lua")
+
 function Create(self)
+
+	self.AI = NativeHumanAI:Create(self)
+	--You can turn features on and off here
+	self.armSway = false;--true;
+	self.automaticEquip = false;
+	self.alternativeGib = true;
+	self.visibleInventory = false;
 
 	self.stepSound = CreateSoundContainer("SPF Droid Step", "SPF.rte");	
 	self.landSound = CreateSoundContainer("SPF Droid Land", "SPF.rte");
@@ -34,6 +44,8 @@ function Create(self)
 	self.wasInAir = false;
 	
 	self.moveSoundTimer = Timer();
+	
+	self.MeleeAISkill = 0.9
 	
 end
 
@@ -239,5 +251,10 @@ function Update(self)
 			--print("TARGET LOST!")
 		end
 	end
+
+end
+
+function UpdateAI(self)
+	self.AI:Update(self)
 
 end
