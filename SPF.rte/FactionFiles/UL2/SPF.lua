@@ -163,6 +163,17 @@ CF_ItmTypes[factionid][i] = CF_WeaponTypes.TOOL;
 CF_ItmPowers[factionid][i] = 0
 
 i = #CF_ItmNames[factionid] + 1
+CF_ItmNames[factionid][i] = "Rum"
+CF_ItmPresets[factionid][i] = "Rum"
+CF_ItmModules[factionid][i] = "SPF.rte"
+CF_ItmPrices[factionid][i] = 10
+CF_ItmDescriptions[factionid][i] = "Rum!"
+CF_ItmUnlockData[factionid][i] = 100
+CF_ItmClasses[factionid][i] = "HeldDevice"
+CF_ItmTypes[factionid][i] = CF_WeaponTypes.TOOL;
+CF_ItmPowers[factionid][i] = 0
+
+i = #CF_ItmNames[factionid] + 1
 CF_ItmNames[factionid][i] = "Cutlass"
 CF_ItmPresets[factionid][i] = "Cutlass"
 CF_ItmModules[factionid][i] = "SPF.rte"

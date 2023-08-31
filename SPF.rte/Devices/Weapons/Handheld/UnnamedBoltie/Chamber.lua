@@ -69,7 +69,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -81,10 +81,10 @@ function Create(self)
 	-- Progressive Recoil System 
 	self.recoilAcc = 0 -- for sinous
 	self.recoilStr = 0 -- for accumulator
-	self.recoilStrength = 26 -- multiplier for base recoil added to the self.recoilStr when firing
+	self.recoilStrength = 20 -- multiplier for base recoil added to the self.recoilStr when firing
 	self.recoilPowStrength = 0.2 -- multiplier for self.recoilStr when firing
 	self.recoilRandomUpper = 1.3 -- upper end of random multiplier (1 is lower)
-	self.recoilDamping = 0.4
+	self.recoilDamping = 0.6
 	
 	self.recoilMax = 15 -- in deg.
 	self.originalSharpLength = self.SharpLength
@@ -145,7 +145,7 @@ function Update(self)
 	local controller = self.parent and self.parent:GetController() or nil
 	-- PAWNIS RELOAD ANIMATION HERE
 	if self.parent and (self:IsReloading() or self.Chamber == true) then
-		print(self.Frame)
+		--print(self.Frame)
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
@@ -391,7 +391,7 @@ function Update(self)
 						self.boltBack = false;
 						self.Chamber = false;
 						self.reChamber = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 					end
 
@@ -419,7 +419,7 @@ function Update(self)
 			self.phaseOnStop = nil;
 		end
 		
-		self.ReloadTime = 30000;
+		self.BaseReloadTime = 30000;
 	end
 	
 	if self:DoneReloading() then

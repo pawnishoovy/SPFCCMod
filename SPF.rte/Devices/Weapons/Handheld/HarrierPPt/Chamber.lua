@@ -62,7 +62,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -243,7 +243,7 @@ function Update(self)
 					if self.chamberOnReload then
 						self.phaseOnStop = 2;
 					else
-						self.ReloadTime = 0; -- done! no after delay if non-chambering reload.
+						self.BaseReloadTime = 0; -- done! no after delay if non-chambering reload.
 						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end
@@ -276,7 +276,7 @@ function Update(self)
 				if self.chamberOnReload and self.reloadPhase == 1 then
 					self.reloadPhase = self.reloadPhase + 1;
 				elseif self.reloadPhase == 1 or self.reloadPhase == 3 then
-					self.ReloadTime = 0;
+					self.BaseReloadTime = 0;
 					self.reloadPhase = 0;
 				else
 					self.reloadPhase = self.reloadPhase + 1;
@@ -295,7 +295,7 @@ function Update(self)
 		if self.reloadPhase == 3 then
 			self.reloadPhase = 2;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 		-- SLIDE animation when firing
 		-- don't ask, math magic
 		local f = math.max(1 - math.min((self.FireTimer.ElapsedSimTimeMS) / 200, 1), 0)

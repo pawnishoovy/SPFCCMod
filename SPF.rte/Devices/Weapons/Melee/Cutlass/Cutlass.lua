@@ -60,6 +60,8 @@ function OnDetach(self)
 end
 
 function Create(self)
+
+	self:SetNumberValue("Weapons - Mordhau Melee", 1)
 	
 	self.swingRotationFrames = 1; -- this is the amount of frames it takes us to go from sideways to facing forwards again (after a swing)
 								  -- for swords this might just be one, for big axes it could be as high as 4
@@ -612,7 +614,7 @@ function Create(self)
 	stabattackPhase[i].angleStart = -15
 	stabattackPhase[i].angleEnd = -85
 	stabattackPhase[i].offsetStart = Vector(0, 0)
-	stabattackPhase[i].offsetEnd = Vector(-4, -3)
+	stabattackPhase[i].offsetEnd = Vector(-11, 2)
 	
 	stabattackPhase[i].soundStart = nil
 	stabattackPhase[i].soundStartVariations = 0
@@ -639,8 +641,8 @@ function Create(self)
 	stabattackPhase[i].frameEnd = 0
 	stabattackPhase[i].angleStart = -85
 	stabattackPhase[i].angleEnd = -90
-	stabattackPhase[i].offsetStart = Vector(-4, -3)
-	stabattackPhase[i].offsetEnd = Vector(-5, -4)
+	stabattackPhase[i].offsetStart = Vector(-11, 2)
+	stabattackPhase[i].offsetEnd = Vector(-12, 3)
 	
 	stabattackPhase[i].soundStart = nil
 	stabattackPhase[i].soundStartVariations = 0
@@ -666,8 +668,8 @@ function Create(self)
 	stabattackPhase[i].frameEnd = 0
 	stabattackPhase[i].angleStart = -70
 	stabattackPhase[i].angleEnd = -80
-	stabattackPhase[i].offsetStart = Vector(-5, -4)
-	stabattackPhase[i].offsetEnd = Vector(0, -5)
+	stabattackPhase[i].offsetStart = Vector(-12, 3)
+	stabattackPhase[i].offsetEnd = Vector(0, 0)
 	
 	stabattackPhase[i].soundStart = CreateSoundContainer("Swing Cutlass SPF", "SPF.rte");
 	
@@ -691,7 +693,7 @@ function Create(self)
 	stabattackPhase[i].frameEnd = 0
 	stabattackPhase[i].angleStart = -80
 	stabattackPhase[i].angleEnd = -90
-	stabattackPhase[i].offsetStart = Vector(0, -5)
+	stabattackPhase[i].offsetStart = Vector(0, 0)
 	stabattackPhase[i].offsetEnd = Vector(4, -6)
 	
 	stabattackPhase[i].soundStart = nil
@@ -1739,6 +1741,89 @@ function Create(self)
 	self.attackAnimations[6] = shieldWarcryPhase
 	self.attackAnimationsTypes[6] = shieldWarcryPhase.Type
 	
+	-- Equip anim
+	equipPhase = {}
+	equipPhase.Type = "Equip";
+	
+	-- Out
+	i = 1
+	equipPhase[i] = {}
+	equipPhase[i].durationMS = 150
+	
+	equipPhase[i].canBeBlocked = false
+	equipPhase[i].canDamage = false
+	equipPhase[i].attackDamage = 0
+	equipPhase[i].attackStunChance = 0
+	equipPhase[i].attackRange = 0
+	equipPhase[i].attackPush = 0
+	equipPhase[i].attackVector = Vector(0, -4) -- local space vector relative to position and rotation
+	equipPhase[i].attackAngle = 90;
+	
+	equipPhase[i].frameStart = 6
+	equipPhase[i].frameEnd = 6
+	equipPhase[i].angleStart = -200
+	equipPhase[i].angleEnd = -200
+	equipPhase[i].offsetStart = Vector(-4, 0)
+	equipPhase[i].offsetEnd = Vector(4, -15)
+	
+	equipPhase[i].soundStart = CreateSoundContainer("Equip Cutlass SPF", "SPF.rte");
+	
+	-- Upright
+	i = 2
+	equipPhase[i] = {}
+	equipPhase[i].durationMS = 150
+	
+	equipPhase[i].canBeBlocked = false
+	equipPhase[i].canDamage = false
+	equipPhase[i].attackDamage = 0
+	equipPhase[i].attackStunChance = 0
+	equipPhase[i].attackRange = 0
+	equipPhase[i].attackPush = 0
+	equipPhase[i].attackVector = Vector(4, -4) -- local space vector relative to position and rotation
+	equipPhase[i].attackAngle = 0;
+	
+	equipPhase[i].frameStart = 6
+	equipPhase[i].frameEnd = 0
+	equipPhase[i].angleStart = -200
+	equipPhase[i].angleEnd = 0
+	equipPhase[i].offsetStart = Vector(4, 0)
+	equipPhase[i].offsetEnd = Vector(-5, -10)
+	
+	equipPhase[i].soundStart = nil
+	equipPhase[i].soundStartVariations = 0
+	
+	equipPhase[i].soundEnd = nil
+	equipPhase[i].soundEndVariations = 0
+	
+	-- Stance
+	i = 3
+	equipPhase[i] = {}
+	equipPhase[i].durationMS = 150
+	
+	equipPhase[i].canBeBlocked = false
+	equipPhase[i].canDamage = false
+	equipPhase[i].attackDamage = 3.4
+	equipPhase[i].attackStunChance = 0.15
+	equipPhase[i].attackRange = 20
+	equipPhase[i].attackPush = 0.8
+	equipPhase[i].attackVector = Vector(4, 4) -- local space vector relative to position and rotation
+	equipPhase[i].attackAngle = 0;
+	
+	equipPhase[i].frameStart = 0
+	equipPhase[i].frameEnd = 0
+	equipPhase[i].angleStart = 0
+	equipPhase[i].angleEnd = -25
+	equipPhase[i].offsetStart = Vector(-5, -5)
+	equipPhase[i].offsetEnd = Vector(0, 0)
+	
+	equipPhase[i].soundEnd = nil
+	
+	-- Add the animation to the animation table
+	self.attackAnimationsSounds[10] = regularAttackSounds
+	self.attackAnimationsGFX[10] = regularAttackGFX
+	self.attackAnimations[10] = equipPhase
+	self.attackAnimationsTypes[10] = equipPhase.Type	
+	
 	self.rotation = 0
 	self.rotationInterpolation = 1 -- 0 instant, 1 smooth, 2 wiggly smooth
 	self.rotationInterpolationSpeed = 25
@@ -1749,10 +1834,6 @@ function Create(self)
 end
 
 function Update(self)
-
-	if UInputMan:KeyPressed(38) then
-		self:ReloadScripts();
-	end
 	
 	self:RemoveStringValue("Blocked Mordhau")
 
@@ -1770,7 +1851,23 @@ function Update(self)
 		end
 	end
 	
-	if controller then --          :-)
+	if self.equipAnim == true then
+	
+		playAttackAnimation(self, 10)
+		self.equipAnim = false;
+
+		-- local rotationTarget = -225 / 180 * math.pi
+		-- local stanceTarget = Vector(-4, 0);
+	
+		-- self.stance = self.stance + stanceTarget
+		
+		-- rotationTarget = rotationTarget * self.FlipFactor
+		-- self.rotation = self.rotation + rotationTarget
+		
+		-- self.StanceOffset = self.originalStanceOffset + self.stance
+		-- self.RotAngle = self.RotAngle + self.rotation
+	
+	elseif controller then --          :-)
 	
 		-- INPUT
 		local flourish
@@ -1781,9 +1878,9 @@ function Update(self)
 		local activated
 		if self.parriedCooldown == false then
 			if player then
-				flourish = (player and UInputMan:KeyPressed(8));
-				stab = (player and UInputMan:KeyPressed(2))
-				overhead = (player and UInputMan:KeyPressed(22))
+				flourish = (player and UInputMan:KeyPressed(SPFSettings.MeleeFlourishHotkey));
+				stab = (player and UInputMan:KeyPressed(SPFSettings.MeleeStabHotkey))
+				overhead = (player and UInputMan:KeyPressed(SPFSettings.MeleeOverheadHotkey))
 				if stab or overhead or flourish or warcry then
 					controller:SetState(Controller.PRESS_PRIMARY, true)
 					self:Activate();
@@ -1960,7 +2057,7 @@ function Update(self)
 				-- block cancelling
 				local keyPress
 				if player then
-					keyPress = UInputMan:KeyPressed(18) or (self.blockedNullifier == false and UInputMan:KeyHeld(18));
+					keyPress = UInputMan:KeyPressed(SPFSettings.MeleeBlockHotkey) or (self.blockedNullifier == false and UInputMan:KeyHeld(SPFSettings.MeleeBlockHotkey));
 				else
 					keyPress = self:NumberValueExists("AI Block");
 				end
@@ -1981,7 +2078,7 @@ function Update(self)
 					
 					self:RemoveNumberValue("Current Attack Type")
 					
-					stanceTarget = Vector(4, -7);
+					stanceTarget = Vector(4, -14);
 					
 					self.originalBaseRotation = -160;
 					self.baseRotation = -145;
@@ -2017,7 +2114,7 @@ function Update(self)
 				canDamage = false;
 				canBeBlocked = false;
 			end
-			damage = currentPhase.attackDamage or 0
+			damage = (currentPhase.attackDamage * 0.7) or 0 -- bodged nerf
 			damageVector = currentPhase.attackVector or Vector(0,0)
 			damageAngle = currentPhase.attackAngle or 0
 			damageRange = currentPhase.attackRange or 0
@@ -2209,7 +2306,7 @@ function Update(self)
 			local keyReleased
 			local keyHeld
 			if player then
-				local key = UInputMan:KeyHeld(18)
+				local key = UInputMan:KeyHeld(SPFSettings.MeleeBlockHotkey)
 				
 				keyPressed = key and not self.Blocking
 				keyReleased = key and self.Blocking
@@ -2232,7 +2329,7 @@ function Update(self)
 				
 				self:SetNumberValue("Blocking", 1);
 				
-				stanceTarget = Vector(4, -7);
+				stanceTarget = Vector(4, -14);
 				
 				self.originalBaseRotation = -160;
 				self.baseRotation = -145;
@@ -2241,7 +2338,7 @@ function Update(self)
 			
 				self.originalBaseRotation = -160;
 			
-				stanceTarget = Vector(4, -7);
+				stanceTarget = Vector(4, -14);
 				
 				self:SetNumberValue("Current Attack Type", 0);
 				self:SetNumberValue("Current Attack Range", 0);
@@ -2679,5 +2776,17 @@ function Update(self)
 		end
 	end
 	
-	self:RemoveNumberValue("AI Block");
+	if self.blockRemoverWorkAround == 20 then
+	
+		-- i tried for an hour to fix this the good way
+		-- it would work literally at random
+		-- i don't know what the issue is
+	
+		self:RemoveNumberValue("AI Block");
+		self.blockRemoverWorkAround = 0;
+		
+	else
+	
+		self.blockRemoverWorkAround = self.blockRemoverWorkAround and self.blockRemoverWorkAround + 1 or 1;
+	end
 end

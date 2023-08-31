@@ -58,7 +58,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireTime = 1 / (self.RateOfFire / 60) * 1000
 	
@@ -277,11 +277,11 @@ function Update(self)
 					self.reloadPhase = 2
 					
 				elseif self.reloadPhase == 1 then
-					self.ReloadTime = 0
+					self.BaseReloadTime = 0
 					self.reloadPhase = 0
 					
 				elseif self.reloadPhase == 2 then
-					self.ReloadTime = 0
+					self.BaseReloadTime = 0
 					self.reloadPhase = 0
 					
 				else
@@ -308,7 +308,7 @@ function Update(self)
 			self.reloadPhase = self.phaseOnStop;
 			self.phaseOnStop = nil;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 	end
 	
 	if self:DoneReloading() == true then

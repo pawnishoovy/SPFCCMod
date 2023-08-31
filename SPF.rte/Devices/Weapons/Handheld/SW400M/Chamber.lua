@@ -73,7 +73,7 @@ function Create(self)
 	self.reloadPhase = 0;
 	
 	self.Frame = 1;
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -315,7 +315,7 @@ function Update(self)
 						self.reChamber = false;
 					else
 						self.reChamber = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 					end
 					
@@ -326,7 +326,7 @@ function Update(self)
 						self.reloadPhase = 0;
 					else
 						self.reChamber = false;
-						self.ReloadTime = 0;
+						self.BaseReloadTime = 0;
 						self.reloadPhase = 0;
 					end
 					self.needsChamber = false;
@@ -349,7 +349,7 @@ function Update(self)
 		if self.needsChamber then
 			self.reloadPhase = 5;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 	
 	end
 	

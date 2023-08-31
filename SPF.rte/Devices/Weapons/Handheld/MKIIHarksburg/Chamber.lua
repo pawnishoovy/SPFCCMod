@@ -63,7 +63,7 @@ function Create(self)
 	self.reloadPhase = 0;
 	
 	self.Frame = 0;
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -289,7 +289,7 @@ function Update(self)
 				self.afterSoundPlayed = false;
 					
 				if self.reloadPhase == 3 then
-					self.ReloadTime = 0;
+					self.BaseReloadTime = 0;
 					self.reloadPhase = 0;
 					
 				else
@@ -307,7 +307,7 @@ function Update(self)
 			self.reloadPhase = self.phaseOnStop;
 			self.phaseOnStop = nil;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 	
 	end
 	

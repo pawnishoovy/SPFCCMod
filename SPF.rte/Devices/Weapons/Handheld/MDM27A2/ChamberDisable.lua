@@ -1,7 +1,7 @@
 function OnDetach(self)
 
 	self:DisableScript("SPF.rte/Devices/Weapons/Handheld/MDM27A2/Chamber.lua");
-	self.ReloadTime = 5000;
+	self.BaseReloadTime = 5000;
 	self.Frame = 0;
 	
 	if self.prepareSound then 

@@ -64,7 +64,7 @@ function Create(self)
 	
 	self.reloadPhase = 0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	self.fireDelayTimer = Timer();
 	self.delayedFire = false
@@ -76,12 +76,12 @@ function Create(self)
 	-- Progressive Recoil System 
 	self.recoilAcc = 0 -- for sinous
 	self.recoilStr = 0 -- for accumulator
-	self.recoilStrength = 35 -- multiplier for base recoil added to the self.recoilStr when firing
+	self.recoilStrength = 27 -- multiplier for base recoil added to the self.recoilStr when firing
 	self.recoilPowStrength = 0.2 -- multiplier for self.recoilStr when firing
 	self.recoilRandomUpper = 1.1 -- upper end of random multiplier (1 is lower)
-	self.recoilDamping = 0.2
+	self.recoilDamping = 0.3
 	
-	self.recoilMax = 25 -- in deg.
+	self.recoilMax = 15 -- in deg.
 	self.originalSharpLength = self.SharpLength
 	-- Progressive Recoil System 
 end
@@ -248,7 +248,7 @@ function Update(self)
 					if self.chamberOnReload then
 						self.phaseOnStop = 2;
 					else
-						self.ReloadTime = 0; -- done! no after delay if non-chambering reload.
+						self.BaseReloadTime = 0; -- done! no after delay if non-chambering reload.
 						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end
@@ -281,7 +281,7 @@ function Update(self)
 				if self.chamberOnReload and self.reloadPhase == 1 then
 					self.reloadPhase = self.reloadPhase + 1;
 				elseif self.reloadPhase == 1 or self.reloadPhase == 3 then
-					self.ReloadTime = 0;
+					self.BaseReloadTime = 0;
 					self.reloadPhase = 0;
 				else
 					self.reloadPhase = self.reloadPhase + 1;
@@ -300,7 +300,7 @@ function Update(self)
 		if self.reloadPhase == 3 then
 			self.reloadPhase = 2;
 		end
-		self.ReloadTime = 9999;
+		self.BaseReloadTime = 9999;
 		-- SLIDE animation when firing
 		-- don't ask, math magic
 		local f = math.max(1 - math.min((self.FireTimer.ElapsedSimTimeMS) / 200, 1), 0)
@@ -356,7 +356,7 @@ function Update(self)
 			self.chamberOnReload = true;
 		end
 	
-		self.horizontalAnim = 25
+		self.horizontalAnim = 5
 	
 		self.FireTimer:Reset();
 	

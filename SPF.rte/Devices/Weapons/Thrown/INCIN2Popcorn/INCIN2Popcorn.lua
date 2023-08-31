@@ -30,7 +30,7 @@ function Update(self)
 	elseif self.activated then
 	
 		local player = IsActor(self:GetRootParent()) and ToActor(self:GetRootParent()):IsPlayerControlled();
-		local input = player and UInputMan:KeyPressed(22);
+		local input = player and UInputMan:KeyPressed(SPFSettings.GrenadeCookHotkey);
 	
 		if not self:IsAttached() or input then
 			self.Frame = 2;

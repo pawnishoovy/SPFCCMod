@@ -49,7 +49,7 @@ function Create(self)
 	
 	self.reloadPhase = 	0;
 	
-	self.ReloadTime = 9999;
+	self.BaseReloadTime = 9999;
 	
 	-- Progressive Recoil System 
 	self.recoilAcc = 0 -- for sinous
@@ -146,7 +146,7 @@ function Update(self)
 				self.reloadTimer:Reset();
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
-				self.ReloadTime = 0;
+				self.BaseReloadTime = 0;
 				self.reloadPhase = 0;
 			end
 		end		
@@ -155,7 +155,7 @@ function Update(self)
 		self.reloadTimer:Reset();
 		self.prepareSoundPlayed = false;
 		self.afterSoundPlayed = false;
-		self.ReloadTime = 4350;
+		self.BaseReloadTime = 4350;
 		-- SLIDE animation when firing
 		-- don't ask, math magic
 		-- local f = math.max(1 - math.min((self.FireTimer.ElapsedSimTimeMS) / 100, 1), 0)
