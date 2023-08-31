@@ -222,3 +222,9 @@ function OnDestroy(self)
 		end
 	end
 end
+
+function Destroy(self)
+
+	self.fireLoopSound:Stop(-1);
+
+end
