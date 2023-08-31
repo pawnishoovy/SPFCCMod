@@ -1,10 +1,12 @@
 In mid-late 2022, revamped and enhanced by pawnishoovy.
 
+Other credits: filipex2000 for legacy code, cherkov/mike for cutlass sprites.
+
 Original text by Major below (mildly modified for acuracy)
 
 They've come for your booty! Stop them!
 
-A widespread group of pirates that loosely group together in a "Federation".
+A widespread group of pirates that loosely group together in a "federation".
 Ragtag and using a wide variety of low tech weapons they are only a force 
 to be reckoned with in large numbers. They sometimes cooperate with the
 Ronin on joint ventures.
@@ -12,6 +14,7 @@ Ronin on joint ventures.
 In the mod:
 
 Actors:
+  - Salvaged UA-056 Minuteman Brainbot: Brainbot.
   - Federal Privateer: A light soldier.
   - Armoured Federal Privateer: A medium soldier.
   - Ohklar: A heavy soldier.
