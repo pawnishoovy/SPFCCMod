@@ -1,3 +1,4 @@
+--[[MULTITHREAD]]--
 
 function Create(self)
 	---------------- AI variables start ----------------

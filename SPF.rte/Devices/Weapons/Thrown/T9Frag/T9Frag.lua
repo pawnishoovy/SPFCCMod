@@ -1,3 +1,5 @@
+dofile("SPF.rte/SPFSettings.lua")
+
 function Create(self)
 
 	self.pullPinSound = CreateSoundContainer("SPF Grenade Pin Pull", "SPF.rte");
