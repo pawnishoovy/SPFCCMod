@@ -64,7 +64,7 @@ function Create(self)
 	-- Progressive Recoil System 
 end
 
-function Update(self)
+function ThreadedUpdate(self)
 
 	if self.prepareSound then self.prepareSound.Pos = self.Pos; end
 

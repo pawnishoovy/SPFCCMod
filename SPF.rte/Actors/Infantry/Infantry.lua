@@ -78,7 +78,7 @@ function OnStride(self)
 	
 end
 
-function Update(self)
+function ThreadedUpdate(self)
 	
 	-- if self.alternativeGib then
 		-- HumanFunctions.DoAlternativeGib(self);
@@ -173,7 +173,7 @@ function Update(self)
 
 end
 
-function UpdateAI(self)
+function ThreadedUpdateAI(self)
 	self.AI:Update(self)
 
 end

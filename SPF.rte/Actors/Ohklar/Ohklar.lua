@@ -93,7 +93,7 @@ function OnStride(self)
 	
 end
 
-function Update(self)
+function ThreadedUpdate(self)
 
 	local iniPainOrDeath = self.PainSound:IsBeingPlayed() or self.DeathSound:IsBeingPlayed()
 
@@ -219,11 +219,11 @@ function Update(self)
 				self.AI.Target:GetNumberValue("SPF Enemy Spotted Age") < (self.AI.Target.Age - self.AI.Target:GetNumberValue("SPF Enemy Spotted Delay")) or -- If the timer runs out of time limit
 				math.random(0, 100) < 15 -- Small chance to ignore timers, to spice things up
 				then
-					-- Setup the delay timer
-					self.AI.Target:SetNumberValue("SPF Enemy Spotted Age", self.AI.Target.Age)
-					self.AI.Target:SetNumberValue("SPF Enemy Spotted Delay", math.random(self.spotDelayMin, self.spotDelayMax))
 					
 					self.spotAllowed = false;
+					
+					self.threadingJustSpotted = true;
+					self:RequestSyncedUpdate();
 					
 					if (not iniPainOrDeath) and not self.voiceSound:IsBeingPlayed() and math.random(0, 100) < 25 then
 						self.voiceSound = self.spotVoiceSound;
@@ -234,7 +234,7 @@ function Update(self)
 			else
 				-- Refresh the delay timer
 				if self.AI.Target:NumberValueExists("SPF Enemy Spotted Age") then
-					self.AI.Target:SetNumberValue("SPF Enemy Spotted Age", self.AI.Target.Age)
+					self:RequestSyncedUpdate();
 				end
 			end
 		end
@@ -259,7 +259,24 @@ function Update(self)
 
 end
 
-function UpdateAI(self)
+function SyncedUpdate(self)
+
+	-- Thread-unsafe number value crap
+	
+	if self.AI.Target then
+		if self.threadingJustSpotted then
+			self.AI.Target:SetNumberValue("SPF Enemy Spotted Age", self.AI.Target.Age)
+			self.AI.Target:SetNumberValue("SPF Enemy Spotted Delay", math.random(self.spotDelayMin, self.spotDelayMax))
+		else
+			self.AI.Target:SetNumberValue("SPF Enemy Spotted Age", self.AI.Target.Age)
+		end
+	end
+	
+	self.threadingJustSpotted = false;
+	
+end
+
+function ThreadedUpdateAI(self)
 	self.AI:Update(self)
 
 end

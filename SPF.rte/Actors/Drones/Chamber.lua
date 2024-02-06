@@ -24,7 +24,7 @@ function Create(self)
 	
 end
 
-function Update(self)
+function ThreadedUpdate(self)
 
 	self.fireLoopSound.Pos = self.Pos;
 	
