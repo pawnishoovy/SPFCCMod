@@ -1,4 +1,4 @@
---[[MULTITHREAD]]--
+dofile("SPF.rte/SPFSettings.lua")
 
 function Create(self)
 
@@ -42,7 +42,7 @@ function Create(self)
 	self.reloadAfterDelay.BoltBack = 200
 	self.reloadAfterDelay.RoundIn = 200
 	self.reloadAfterDelay.BoltForward = 100
-	self.reloadAfterDelay.BoltDown = 150
+	self.reloadAfterDelay.BoltDown = 200
 	
 	self.lastAge = self.Age
 	
@@ -72,8 +72,7 @@ function Create(self)
 	self.reloadPhase = 0;
 	
 	self.BaseReloadTime = 9999;
-	
-	self.fireDelayTimer = Timer();
+
 	self.delayedFire = false
 	self.delayedFireTimer = Timer();
 	self.delayedFireTimeMS = 40
@@ -93,7 +92,7 @@ function Create(self)
 	-- Progressive Recoil System 
 end
 
-function Update(self)
+function ThreadedUpdate(self)
 	self.rotationTarget = 0 -- ZERO IT FIRST AAAA!!!!!
 	
 	if self.ID == self.RootID then
@@ -140,7 +139,6 @@ function Update(self)
 		if self.delayedFire then
 			self.delayedFire = false
 		end
-		self.fireDelayTimer:Reset()
 	end
 	self.lastAge = self.Age + 0
 	
@@ -151,8 +149,6 @@ function Update(self)
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
-		
-		self.fireDelayTimer:Reset();
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
@@ -166,7 +162,7 @@ function Update(self)
 			self.prepareSoundLength = self.reloadPrepareLengths.BoltUp;
 			self.afterSound = self.reloadAfterSounds.BoltUp;
 			--
-			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = -1 -- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
 		elseif self.reloadPhase == 1 then
 		
@@ -182,7 +178,7 @@ function Update(self)
 			self.prepareSoundLength = self.reloadPrepareLengths.BoltBack;
 			self.afterSound = self.reloadAfterSounds.BoltBack;
 			--
-			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)			
+			self.rotationTarget = -2 -- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)			
 			
 		elseif self.reloadPhase == 2 then
 		
@@ -211,7 +207,7 @@ function Update(self)
 			self.prepareSoundLength = self.reloadPrepareLengths.BoltForward;
 			self.afterSound = self.reloadAfterSounds.BoltForward;
 			--
-			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 2 -- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
 		elseif self.reloadPhase == 4 then
 		
@@ -224,7 +220,7 @@ function Update(self)
 			self.prepareSoundLength = self.reloadPrepareLengths.BoltDown;
 			self.afterSound = self.reloadAfterSounds.BoltDown;
 			--
-			self.rotationTarget = 2-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 6 -- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
 		end
 		
@@ -248,7 +244,7 @@ function Update(self)
 				
 				self.Frame = math.floor(factor * (2) + 0.5)
 				
-				self.rotationTarget = -5 + -2 * factor	
+				self.rotationTarget = -2 + 2 * factor	
 				
 			elseif self.reloadPhase == 1 then
 			
@@ -261,7 +257,7 @@ function Update(self)
 				
 				self.Frame = 2 + math.floor(factor * (5 - 2) + 0.5)
 				
-				self.rotationTarget = -5 + -2 * factor
+				self.rotationTarget = -3 + 2 * factor
 				
 			elseif self.reloadPhase == 2 then
 			
@@ -281,7 +277,7 @@ function Update(self)
 				
 			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				self.rotationTarget = -15 - -2 * factor
+				self.rotationTarget = -4 + -2 * factor
 			
 			elseif self.reloadPhase == 4 then
 			
@@ -294,7 +290,7 @@ function Update(self)
 				
 			--	PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				self.rotationTarget = -15 - -2 * factor
+				self.rotationTarget = 0
 				
 			end
 			
@@ -425,7 +421,6 @@ function Update(self)
 	end
 	
 	if self:DoneReloading() then
-		self.fireDelayTimer:Reset()
 		self.Magazine.RoundCount = self.ammoCount;
 	end
 
@@ -438,16 +433,14 @@ function Update(self)
 	if self.parent and self.delayedFirstShot == true then
 		
 		--if self.parent:GetController():IsState(Controller.WEAPON_FIRE) and not self:IsReloading() then
-		if fire and not self:IsReloading() then
+		if fire and not self:IsReloading() and not self.Chamber and not self.spentRound then
 			if not self.Magazine or self.Magazine.RoundCount < 1 then
 				--self:Reload()
 				self:Activate()
-			elseif not self.activated and not self.delayedFire and self.fireDelayTimer:IsPastSimMS(1 / (self.RateOfFire / 60) * 1000) then
+			elseif not self.activated and not self.delayedFire then
 				self.activated = true
 				
 				self.preSound:Play(self.Pos);
-				
-				self.fireDelayTimer:Reset()
 				
 				self.delayedFire = true
 				self.delayedFireTimer:Reset()
@@ -550,11 +543,11 @@ function Update(self)
 	
 	if self.spentRound == true and not self:IsReloading() and not (self.Chamber == true or self.reChamber == true) then
 		self.delayedFirstShot = false
-		if self.canChamber == false then
+		if self.canChamber == false and SPFSettings.ManualChamber == true then
 			if (controller and not fire) then
 				self.canChamber = true
 			end
-		elseif (controller and fire) then
+		elseif (controller and fire) or SPFSettings.ManualChamber == false then
 			if self.ammoCount == 0 then
 				self:Reload();
 			else

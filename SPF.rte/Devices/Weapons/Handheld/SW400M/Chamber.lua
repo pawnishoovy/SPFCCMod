@@ -1,4 +1,4 @@
---[[MULTITHREAD]]--
+dofile("SPF.rte/SPFSettings.lua")
 
 function Create(self)
 
@@ -27,10 +27,10 @@ function Create(self)
 	
 	self.reloadPrepareDelay = {}
 	self.reloadPrepareDelay.CylinderOpen = 400
-	self.reloadPrepareDelay.EjectShells = 270
-	self.reloadPrepareDelay.SpeedLoaderIn = 1000
-	self.reloadPrepareDelay.SpeedLoaderOff = 300
-	self.reloadPrepareDelay.CylinderClose = 700
+	self.reloadPrepareDelay.EjectShells = 50
+	self.reloadPrepareDelay.SpeedLoaderIn = 350
+	self.reloadPrepareDelay.SpeedLoaderOff = 150
+	self.reloadPrepareDelay.CylinderClose = 400
 	self.reloadPrepareDelay.HammerBack = 100
 	
 	self.reloadAfterSounds = {}
@@ -477,11 +477,11 @@ function ThreadedUpdate(self)
 	if self.needsChamber == true and not self:IsReloading() and not (self.reChamber == true) then
 		self:Deactivate();
 		self.delayedFirstShot = false;
-		if self.canChamber == false then
+		if self.canChamber == false and SPFSettings.ManualChamber == true then
 			if not fire then
 				self.canChamber = true
 			end
-		elseif fire then
+		elseif fire or SPFSettings.ManualChamber == false then
 			if self.RoundInMagCount == 0 then
 				self:Reload();
 				self.reChamber = true
