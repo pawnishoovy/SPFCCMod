@@ -248,7 +248,7 @@ function ThreadedUpdate(self)
 			self.prepareSoundLength = self.reloadPrepareLengths.BoltDown;
 			self.afterSound = self.reloadAfterSounds.BoltDown;
 			--
-			self.rotationTarget = 1-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 3-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
 		end
 		
@@ -298,7 +298,7 @@ function ThreadedUpdate(self)
 				
 				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				self.rotationTarget = -2 + -3 * factor
+				self.rotationTarget = -2 + -1 * factor
 			
 			elseif self.reloadPhase == 5 then
 			
@@ -311,7 +311,7 @@ function ThreadedUpdate(self)
 				
 				-- PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
-				self.rotationTarget = -1 + -3 * factor
+				self.rotationTarget = -1 + 3 * factor
 				
 			end
 			

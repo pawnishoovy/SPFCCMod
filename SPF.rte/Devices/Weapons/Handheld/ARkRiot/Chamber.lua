@@ -458,11 +458,11 @@ function ThreadedUpdate(self)
 	
 	if self.spentRound == true and not self:IsReloading() and not (self.Chamber == true or self.reChamber == true) then
 		self.delayedFirstShot = false
-		if self.canChamber == false then
+		if self.canChamber == false and SPFSettings.ManualChamber == true then
 			if (controller and not fire) then
 				self.canChamber = true
 			end
-		elseif (controller and fire) then
+		elseif (controller and fire) or SPFSettings.ManualChamber == false then
 			if self.ammoCount == 0 then
 				self:Reload();
 				self.reloadPhase = 0;
